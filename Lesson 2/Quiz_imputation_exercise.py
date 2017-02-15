@@ -1,0 +1,33 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on Thu Feb  9 08:23:34 2017
+
+@author: matthew
+"""
+
+import pandas
+import numpy
+
+def imputation(filename):
+    # Pandas dataframes have a method called 'fillna(value)', such that you can
+    # pass in a single value to replace any NAs in a dataframe or series. You
+    # can call it like this: 
+    #     dataframe['column'] = dataframe['column'].fillna(value)
+    #
+    # Using the numpy.mean function, which calculates the mean of a numpy
+    # array, impute any missing values in our Lahman baseball
+    # data sets 'weight' column by setting them equal to the average weight.
+    # 
+    # You can access the 'weight' colum in the baseball data frame by
+    # calling baseball['weight']
+
+    baseball = pandas.read_csv(filename)
+    
+    avg = numpy.mean(baseball['weight'])
+    
+    baseball['weight'] = baseball['weight'].fillna(avg)
+    
+    #YOUR CODE GOES HERE
+
+    return baseball
